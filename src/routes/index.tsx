@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.jpg.asset.json";
+import logo3d from "@/assets/logo-3d.png";
+import { Stethoscope, Hospital, Pill, Microscope, Mail, Phone, Plus } from "lucide-react";
 
 const PLAY = "https://play.google.com/store/apps/details?id=com.nalber.doctoriakrd&hl=en";
 const APPLE = "https://apps.apple.com/us/app/doctoria-krd/id6775965163";
@@ -22,10 +24,10 @@ export const Route = createFileRoute("/")({
 });
 
 const sections = [
-  { icon: "🩺", title: "پزیشکەکان", text: "بە پێی پسپۆڕی و شار، باشترین پزیشک بدۆزەرەوە و زانیاری تەواوی ببینە." },
-  { icon: "🏥", title: "نەخۆشخانەکان", text: "لیستی نەخۆشخانە گشتی و تایبەتەکان، ناونیشان و ژمارەی پەیوەندی." },
-  { icon: "💊", title: "کلینیکەکان", text: "کلینیکە نزیکەکانی خۆت بدۆزەرەوە و ڕاستەوخۆ پەیوەندییان پێوە بکە." },
-  { icon: "🔬", title: "سەنتەرەکان", text: "سەنتەری تاقیگە، تیشک و چارەسەری سروشتی، هەموو لە یەک شوێن." },
+  { icon: Stethoscope, title: "پزیشکەکان", text: "بە پێی پسپۆڕی و شار، باشترین پزیشک بدۆزەرەوە و زانیاری تەواوی ببینە." },
+  { icon: Hospital, title: "نەخۆشخانەکان", text: "لیستی نەخۆشخانە گشتی و تایبەتەکان، ناونیشان و ژمارەی پەیوەندی." },
+  { icon: Pill, title: "کلینیکەکان", text: "کلینیکە نزیکەکانی خۆت بدۆزەرەوە و ڕاستەوخۆ پەیوەندییان پێوە بکە." },
+  { icon: Microscope, title: "سەنتەرەکان", text: "سەنتەری تاقیگە، تیشک و چارەسەری سروشتی، هەموو لە یەک شوێن." },
 ];
 
 function useReveal() {
@@ -68,7 +70,7 @@ function Index() {
       <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? "bg-background/80 shadow-sm backdrop-blur-lg" : ""}`}>
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <a href="#top" className="flex items-center gap-2">
-            <img src={logo.url} alt="Doctoria KRD" className="h-12 w-12 rounded-xl bg-card object-contain" />
+            <img src={logo3d} alt="Doctoria KRD" className="h-10 w-10 object-contain" />
             <b className="font-display text-lg text-navy" dir="ltr">Doctoria KRD</b>
           </a>
           <div className="hidden gap-8 text-sm font-semibold md:flex">
@@ -99,7 +101,7 @@ function Index() {
             <div className="absolute inset-0 animate-ring rounded-full border-2 border-primary/40" />
             <div className="absolute inset-0 animate-ring rounded-full border-2 border-primary/30 [animation-delay:1.2s]" />
             <div className="absolute inset-8 rounded-full bg-brand opacity-10" />
-            <img src={logo.url} alt="Doctoria logo" className="relative w-3/4 animate-float rounded-[2.5rem] bg-card p-4 shadow-glow" />
+            <img src={logo3d} alt="Doctoria logo" className="logo-3d relative w-3/4 animate-float" />
           </div>
         </div>
       </section>
@@ -108,7 +110,7 @@ function Index() {
       <div className="overflow-hidden bg-brand py-4 text-primary-foreground">
         <div className="flex w-max animate-marquee gap-12 whitespace-nowrap font-display text-lg">
           {Array.from({ length: 2 }).flatMap((_, k) =>
-            ["پزیشکەکان", "نەخۆشخانەکان", "کلینیکەکان", "سەنتەرەکان", "هەولێر", "سلێمانی", "دهۆک", "هەڵەبجە"].map((t) => <span key={k + t}>✚ {t}</span>),
+            ["پزیشکەکان", "نەخۆشخانەکان", "کلینیکەکان", "سەنتەرەکان", "هەولێر", "سلێمانی", "دهۆک", "هەڵەبجە"].map((t) => <span key={k + t} className="flex items-center gap-2"><Plus className="h-4 w-4" /> {t}</span>),
           )}
         </div>
       </div>
@@ -124,7 +126,7 @@ function Index() {
             <div key={s.title} className="reveal group relative overflow-hidden rounded-3xl border bg-card p-8 transition duration-500 hover:-translate-y-3 hover:shadow-glow" style={{ transitionDelay: `${i * 120}ms` }}>
               <div className="absolute inset-0 bg-brand opacity-0 transition duration-500 group-hover:opacity-100" />
               <div className="relative">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-3xl transition group-hover:scale-110 group-hover:rotate-6 group-hover:bg-card">{s.icon}</div>
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary transition group-hover:scale-110 group-hover:rotate-6 group-hover:bg-card"><s.icon className="h-8 w-8" /></div>
                 <h3 className="mt-6 text-xl font-bold transition group-hover:text-primary-foreground">{s.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground transition group-hover:text-primary-foreground/85">{s.text}</p>
               </div>
@@ -159,7 +161,7 @@ function Index() {
               <p className="mt-4 text-primary-foreground/80">بۆ ئایفۆن و ئەندرۆید بەردەستە — بە خۆڕایی.</p>
               <div className="mt-8 [&_a]:bg-navy"><StoreButtons /></div>
             </div>
-            <img src={logo.url} alt="" className="hidden h-48 w-48 animate-float rounded-3xl bg-card p-3 md:block" />
+            <img src={logo3d} alt="" className="logo-3d hidden h-48 w-48 animate-float object-contain md:block" />
           </div>
         </div>
       </section>
@@ -169,11 +171,11 @@ function Index() {
         <h2 className="reveal text-center text-3xl font-extrabold md:text-5xl">پەیوەندیمان <span className="text-brand">پێوە بکە</span></h2>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <a href={`mailto:${EMAIL}`} className="reveal flex items-center gap-5 rounded-3xl border bg-card p-8 transition hover:-translate-y-2 hover:shadow-glow">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-2xl">✉️</span>
+            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-primary-foreground"><Mail className="h-6 w-6" /></span>
             <span><small className="block text-muted-foreground">ئیمەیڵ</small><b dir="ltr" className="text-lg">{EMAIL}</b></span>
           </a>
           <a href={`tel:${PHONE}`} className="reveal flex items-center gap-5 rounded-3xl border bg-card p-8 transition hover:-translate-y-2 hover:shadow-glow">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-2xl">📞</span>
+            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-primary-foreground"><Phone className="h-6 w-6" /></span>
             <span><small className="block text-muted-foreground">ژمارەی تەلەفۆن</small><b dir="ltr" className="text-lg">{PHONE}</b></span>
           </a>
         </div>
