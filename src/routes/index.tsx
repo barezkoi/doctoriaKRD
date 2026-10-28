@@ -70,12 +70,12 @@ function Index() {
       <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? "bg-background/80 shadow-sm backdrop-blur-lg" : ""}`}>
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <a href="#top" className="flex items-center gap-2">
-            <img src={logo3d} alt="Doctoria KRD" className="h-10 w-10 object-contain" />
+            <img src={logo3d} alt="Doctoria KRD" className="h-14 w-14 object-contain drop-shadow-md" />
             <b className="font-display text-lg text-navy" dir="ltr">Doctoria KRD</b>
           </a>
           <div className="hidden gap-8 text-sm font-semibold md:flex">
             <a href="#services" className="hover:text-primary">خزمەتگوزارییەکان</a>
-            <a href="#download" className="hover:text-primary">داگرتن</a>
+            <a href="#download" className="hover:text-primary">داونلۆد کردن</a>
             <a href="#contact" className="hover:text-primary">پەیوەندی</a>
           </div>
           <a href="#download" className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-primary-foreground shadow-glow">داگرتنی ئەپ</a>
