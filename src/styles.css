@@ -34,6 +34,11 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-navy: var(--navy);
+  --color-royal: var(--royal);
+  --color-sky: var(--sky);
+  --font-display: "Noto Kufi Arabic", sans-serif;
+  --font-sans: "Vazirmatn", "Noto Kufi Arabic", sans-serif;
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -63,14 +68,19 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.985 0.006 250);
+  --foreground: oklch(0.22 0.06 262);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.56 0.22 258);
+  --primary-foreground: oklch(0.99 0 0);
+  --navy: oklch(0.24 0.09 262);
+  --royal: oklch(0.45 0.17 260);
+  --sky: oklch(0.62 0.2 255);
+  --gradient-brand: linear-gradient(135deg, var(--navy), var(--royal) 50%, var(--sky));
+  --shadow-glow: 0 25px 60px -20px color-mix(in oklab, var(--primary) 55%, transparent);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -142,3 +152,18 @@
     color: var(--color-foreground);
   }
 }
+
+@utility bg-brand { background-image: var(--gradient-brand); }
+@utility text-brand { background-image: var(--gradient-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility animate-float { animation: float 6s ease-in-out infinite; }
+@utility animate-blob { animation: blob 14s ease-in-out infinite; }
+@utility animate-marquee { animation: marquee 30s linear infinite; }
+@utility reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); &.in { opacity: 1; transform: none; } }
+@keyframes float { 0%,100% { transform: translateY(0) rotate(0) } 50% { transform: translateY(-18px) rotate(2deg) } }
+@keyframes blob { 0%,100% { transform: translate(0,0) scale(1) } 33% { transform: translate(40px,-30px) scale(1.15) } 66% { transform: translate(-30px,25px) scale(.9) } }
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(50%) } }
+@keyframes pulse-ring { 0% { transform: scale(.8); opacity: .7 } 100% { transform: scale(1.8); opacity: 0 } }
+@utility animate-ring { animation: pulse-ring 2.4s ease-out infinite; }
+body { font-family: var(--font-sans); }
+h1,h2,h3 { font-family: var(--font-display); }
