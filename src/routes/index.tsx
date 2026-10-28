@@ -59,15 +59,27 @@ function StoreButtons() {
 function Index() {
   useReveal();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", f);
+    let last = window.scrollY;
+    const f = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      if (y > last + 4) {
+        if (y > 140) setHidden(true);
+      } else if (y < last - 4) {
+        setHidden(false);
+      }
+      last = y;
+    };
+    window.addEventListener("scroll", f, { passive: true });
     return () => window.removeEventListener("scroll", f);
   }, []);
 
   return (
     <div className="overflow-x-hidden">
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? "bg-background/80 shadow-sm backdrop-blur-lg" : ""}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-transform duration-500 ease-out ${hidden ? "-translate-y-full" : "translate-y-0"} ${scrolled ? "bg-background/80 shadow-sm backdrop-blur-lg" : ""}`}>
+
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <a href="#top" className="flex items-center gap-2">
             <img src={logo3d} alt="Doctoria KRD" className="h-14 w-14 object-contain drop-shadow-md" />
